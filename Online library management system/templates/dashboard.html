@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Your Dashboard</h2>
+        <a href="{{ url_for('search') }}">Search Books</a>
+        <h3>Borrowed Books</h3>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Due Date</th>
+                <th>Return</th>
+            </tr>
+            {% for book in borrowed_books %}
+            <tr>
+                <td>{{ book[1] }}</td>
+                <td>{{ book[2] }}</td>
+                <td>{{ book[4] }}</td>
+                <td><a href="{{ url_for('return_book', borrow_id=book[0]) }}">Return</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
